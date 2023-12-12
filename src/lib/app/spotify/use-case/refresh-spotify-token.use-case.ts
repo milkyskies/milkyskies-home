@@ -1,5 +1,5 @@
 import { SpotifyGateway } from '$lib/infra/spotify/spotify.gateway';
-import { GetSpotifyTokensUseCase } from './get-spotify-tokens.use-case';
+import { GetStoredSpotifyTokensUseCase } from './get-stored-spotify-tokens.use-case';
 
 export class RefreshSpotifyTokenUseCase {
 	private readonly spotifyGateway: SpotifyGateway;
@@ -17,7 +17,7 @@ export class RefreshSpotifyTokenUseCase {
 	}
 
 	async execute(): Promise<void> {
-		const tokens = await GetSpotifyTokensUseCase.create().execute();
+		const tokens = await GetStoredSpotifyTokensUseCase.create().execute();
 
 		await this.spotifyGateway.setRefreshToken({ refreshToken: tokens.refreshToken });
 
