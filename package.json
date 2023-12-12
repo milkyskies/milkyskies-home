@@ -4,13 +4,15 @@
 	"private": true,
 	"license": "MIT",
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
+		"dev": "yarn prepare && vite dev",
+		"prepare": "yarn generate",
+		"build": "yarn prepare && vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
+		"generate": "npm run generate:sveltekit && npm run generate:api && npm run generate:prisma",
 		"generate:sveltekit": "svelte-kit sync",
 		"generate:api": "svetch.ts",
 		"generate:prisma": "prisma generate"
