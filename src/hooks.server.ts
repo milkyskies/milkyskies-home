@@ -17,13 +17,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const response = await resolve(event);
 
-	if (response.status === 401) {
+	if (event.url.pathname.startsWith('/api/spotify')) {
 		await RefreshSpotifyTokenUseCase.create().execute();
-
-		return resolve(event);
 	}
-
-	// return await resolve(event);
 
 	return response;
 };

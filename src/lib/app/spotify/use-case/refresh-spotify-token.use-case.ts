@@ -17,15 +17,12 @@ export class RefreshSpotifyTokenUseCase {
 	}
 
 	async execute(): Promise<void> {
-		const response = await this.spotifyGateway.refreshAccessToken();
+		const tokens = await GetSpotifyTokensUseCase.create().execute();
 
-		if (!response.refresh_token) {
-			const tokens = await GetSpotifyTokensUseCase.create().execute();
+		await this.spotifyGateway.setRefreshToken({ refreshToken: tokens.refreshToken });
 
-			await this.spotifyGateway.setAccessToken({ accessToken: tokens.accessToken });
-			await this.spotifyGateway.setRefreshToken({ refreshToken: tokens.refreshToken });
+		const refresh = await this.spotifyGateway.refreshAccessToken();
 
-			await this.spotifyGateway.refreshAccessToken();
-		}
+		await this.spotifyGateway.setAccessToken({ accessToken: refresh.access_token });
 	}
 }

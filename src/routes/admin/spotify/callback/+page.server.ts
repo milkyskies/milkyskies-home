@@ -11,8 +11,6 @@ export const load: PageServerLoad = async ({ url }) => {
 
 	const tokens = await GenerateSpotifyTokensUseCase.create().execute({ code });
 
-	console.log(tokens);
-
 	await SetSpotifyTokensUseCase.create().execute({
 		accessToken: tokens.access_token,
 		refreshToken: tokens.refresh_token

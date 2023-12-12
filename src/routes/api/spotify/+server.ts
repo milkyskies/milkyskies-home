@@ -16,6 +16,6 @@ export const GET: RequestHandler = async () => {
 
 		return json(response);
 	} catch (error) {
-		return json({ error });
+		return new Response((error as Error).message, { status: 400 });
 	}
 };
