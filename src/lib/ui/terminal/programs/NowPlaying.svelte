@@ -9,7 +9,7 @@
 
 	function handlePlayPause() {
 		if (audioElement) {
-			audioElement.volume = 0.2;
+			audioElement.volume = 0.1;
 
 			isPlaying ? audioElement.pause() : audioElement.play();
 			isPlaying = !isPlaying;
@@ -27,7 +27,7 @@
 
 <div>
 	{#if nowPlaying?.item && nowPlaying?.item.type === 'track'}
-		<div class="p-2">
+		<div class="py-2">
 			<div class="flex">
 				<img class="h-24 rounded-md" src={nowPlaying.item.album.images[0].url} alt="cover" />
 				<div class="ml-4 flex flex-col justify-between">
