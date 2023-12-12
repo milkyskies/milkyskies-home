@@ -4,9 +4,8 @@
 	"private": true,
 	"license": "MIT",
 	"scripts": {
-		"dev": "yarn prepare && vite dev",
-		"prepare": "yarn generate",
-		"build": "yarn prepare && vite build",
+		"dev": "yarn generate && vite dev",
+		"build": "yarn generate && vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
