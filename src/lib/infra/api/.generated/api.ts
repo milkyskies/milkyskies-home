@@ -294,7 +294,8 @@ export interface APIPaths {
     };
     currently_playing_type: 'track' | 'episode' | 'ad' | 'unknown';
   };
-} | never,
+},
+        400: string,
       }
     },
   },

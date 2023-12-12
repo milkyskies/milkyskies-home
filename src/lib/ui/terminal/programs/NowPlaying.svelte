@@ -1,8 +1,20 @@
 <script lang="ts">
 	import { getSvetchClient } from '$lib/infra/api/svetch.client';
+	import TextButton from '$lib/ui/base/TextButton.svelte';
 	import { onMount } from 'svelte';
 
 	let nowPlaying: SpotifyApi.CurrentlyPlayingResponse | undefined;
+	let audioElement: HTMLAudioElement | undefined;
+	let isPlaying = false;
+
+	function handlePlayPause() {
+		if (audioElement) {
+			audioElement.volume = 0.1;
+
+			isPlaying ? audioElement.pause() : audioElement.play();
+			isPlaying = !isPlaying;
+		}
+	}
 
 	onMount(async () => {
 		const svetch = getSvetchClient();
@@ -15,9 +27,9 @@
 
 <div>
 	{#if nowPlaying?.item && nowPlaying?.item.type === 'track'}
-		<div class="p-2">
+		<div class="py-2">
 			<div class="flex">
-				<img class="h-32 rounded-md" src={nowPlaying.item.album.images[0].url} alt="cover" />
+				<img class="h-24 rounded-md" src={nowPlaying.item.album.images[0].url} alt="cover" />
 				<div class="ml-4 flex flex-col justify-between">
 					<div>
 						<div class="font-bold text-ctp-text">{nowPlaying.item.name}</div>
@@ -25,10 +37,8 @@
 					</div>
 					<div>
 						{#if nowPlaying.item.preview_url}
-							<audio controls>
-								<source src={nowPlaying.item.preview_url} type="audio/mpeg" />
-								Your browser does not support the audio element.
-							</audio>
+							<audio src={nowPlaying.item.preview_url} bind:this={audioElement} class="hidden" />
+							<TextButton onClick={handlePlayPause} label={isPlaying ? '停止' : '再生'} />
 						{/if}
 					</div>
 				</div>
