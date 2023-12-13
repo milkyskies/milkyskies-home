@@ -26,9 +26,9 @@
 	});
 </script>
 
-<div class="flex h-screen items-center justify-center px-8">
+<div class="flex h-screen items-center justify-center px-4 py-4 md:px-8 md:py-0">
 	<div
-		class="my-auto h-[calc(100vh-10px)] max-h-[600px] w-full max-w-xl rounded-lg bg-ctp-surface0 p-4"
+		class="my-auto h-full w-full max-w-xl rounded-lg bg-ctp-surface0 p-4 md:h-[calc(100vh-10px)] md:max-h-[600px]"
 	>
 		<div>
 			{#each history as historyItem}
