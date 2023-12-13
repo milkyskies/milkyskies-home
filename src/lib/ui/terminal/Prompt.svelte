@@ -4,9 +4,9 @@
 			<div class="text-ctp-blue">milkyskies</div>
 			<div class="text-ctp-subtext1">@</div>
 			<div class="text-ctp-green">home</div>
-			<div class="text-ctp-subtext1">~</div>
 		</div>
 		<div class="flex whitespace-nowrap">
+			<div class="text-ctp-subtext1">~</div>
 			<div class="text-ctp-subtext2 mr-2">$</div>
 			<slot />
 		</div>
